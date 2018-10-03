@@ -9,32 +9,26 @@ import java.util.Set;
 @Service
 public class JokeService {
 
-    Set<Joke> jokes = new HashSet<>();
+    Set<String> jokes = new HashSet<>();
     RestTemplate restTemplate = new RestTemplate();
 
-    public Joke showJoke() {
-        Joke joke = restTemplate.getForObject("https://api.chucknorris.io/jokes/random", Joke.class);
+    public Joke showJoke() throws ApiChuckNorrisException {
+        Joke joke = null;
 
-        for (Joke e : jokes) {
-            if (e.hashCode() == joke.hashCode()) {
-                if (e.equals(joke)) {
-                    showJoke();
-                } else {
-                    jokes.add(joke);
-                    return joke;
-                }
-            }
+        try {
+            joke = restTemplate.getForObject("https://api.chucknorris.io/jokes/random", Joke.class);
+        } catch (Exception e) {
+            throw new ApiChuckNorrisException("Server error. Please refresh the page.");
         }
-        jokes.add(joke);
-        return joke;
 
-        //Tak próbowałam przed Twoją poranną wiadomością :)
-/*        if(jokes.contains(joke)){
+        if (jokes.contains(joke.getId())) {
             return showJoke();
         } else {
-        jokes.add(joke);*/
-
+            jokes.add(joke.getId());
+        }
+        return joke;
     }
+
 }
 
 

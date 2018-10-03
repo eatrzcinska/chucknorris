@@ -53,24 +53,4 @@ public class Joke {
         this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return getId();
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (this.getId() == object.toString()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-
 }
