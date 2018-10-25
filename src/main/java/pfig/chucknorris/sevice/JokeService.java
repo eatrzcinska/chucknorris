@@ -1,7 +1,9 @@
-package pfig.chucknorris;
+package pfig.chucknorris.sevice;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import pfig.chucknorris.exception.ApiChuckNorrisException;
+import pfig.chucknorris.model.Joke;
 
 import java.util.HashSet;
 import java.util.Set;

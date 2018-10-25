@@ -1,4 +1,4 @@
-package pfig.chucknorris;
+package pfig.chucknorris.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package pfig.chucknorris;
+package pfig.chucknorris.exception;
 
 public class ApiChuckNorrisException extends Exception{
 

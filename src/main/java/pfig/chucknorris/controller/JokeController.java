@@ -1,9 +1,12 @@
-package pfig.chucknorris;
+package pfig.chucknorris.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import pfig.chucknorris.exception.ApiChuckNorrisException;
+import pfig.chucknorris.model.Joke;
+import pfig.chucknorris.sevice.JokeService;
 
 
 @Controller
