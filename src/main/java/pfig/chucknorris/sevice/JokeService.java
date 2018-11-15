@@ -11,26 +11,22 @@ import java.util.Set;
 @Service
 public class JokeService {
 
-    Set<String> jokes = new HashSet<>();
-    RestTemplate restTemplate = new RestTemplate();
+    private Set<String> jokes = new HashSet<>();
+    private RestTemplate restTemplate = new RestTemplate();
 
     public Joke showJoke() throws ApiChuckNorrisException {
         Joke joke = null;
 
-        try {
-            joke = restTemplate.getForObject("https://api.chucknorris.io/jokes/random", Joke.class);
-        } catch (Exception e) {
-            throw new ApiChuckNorrisException("Server error. Please refresh the page.");
-        }
+        do {
+            try {
+                joke = restTemplate.getForObject("https://api.chucknorris.io/jokes/random", Joke.class);
+            } catch (Exception e) {
+                throw new ApiChuckNorrisException("Server error. Please refresh the page.", e.getCause());
+            }
+        } while (!jokes.add(joke.getId()));
 
-        if (jokes.contains(joke.getId())) {
-            return showJoke();
-        } else {
-            jokes.add(joke.getId());
-        }
         return joke;
     }
-
 }
 
 

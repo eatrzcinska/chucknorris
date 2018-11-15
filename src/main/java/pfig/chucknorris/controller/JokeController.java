@@ -19,8 +19,8 @@ public class JokeController {
 
     @GetMapping("/")
     public String showJoke(Model model) throws ApiChuckNorrisException {
-       Joke joke = jokeService.showJoke();
-         model.addAttribute("joke",joke);
+        Joke joke = jokeService.showJoke();
+        model.addAttribute("joke", joke);
         return "indexTemplate";
     }
 
